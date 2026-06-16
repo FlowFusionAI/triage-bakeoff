@@ -42,7 +42,7 @@ re-spend. See [decisions.md → D6](decisions.md).
 |---|---|---|
 | 0 — Repo & scaffold | [phases/phase-0-repo-and-scaffold.md](phases/phase-0-repo-and-scaffold.md) | ✅ done |
 | 1 — Contracts & config | [phases/phase-1-contracts-and-config.md](phases/phase-1-contracts-and-config.md) | ✅ done |
-| 2 — Synthetic golden set | _pending_ | ⬜ |
+| 2 — Synthetic golden set | [phases/phase-2-golden-set.md](phases/phase-2-golden-set.md) | 🟡 drafted — verifying |
 | 3 — Providers & runner | _pending_ | ⬜ |
 | 4 — Scorer, aggregation, tests | _pending_ | ⬜ |
 | 5 — Live run & chart | _pending_ | ⬜ |

@@ -61,9 +61,10 @@ Legend: `[ ]` not started · `[~]` in progress · `[x]` done
   - `data/rubric.md` — labelling rules, one paragraph per field.
   - `pyproject.toml` (uv) + `uv.lock` + `Makefile` (`run`/`score`/`chart`/`test`).
 
-- `[ ]` **Phase 2 — Synthetic golden set** *(offline)*
-  - `data/golden_set.jsonl` — ~70 tickets, stratified across all categories/urgencies,
-    ~15% hard cases, every row marked `NEEDS REVIEW`. Human verification pass with the user.
+- `[~]` **Phase 2 — Synthetic golden set** *(offline)* — doc: [phase-2](docs/phases/phase-2-golden-set.md)
+  - `data/golden_set.jsonl` — **72 tickets drafted**, stratified across all categories/urgencies,
+    12 hard cases (17%), every row `needs_review: true`. Validator: `scripts/check_golden_set.py`.
+  - ⛔ **GATE: awaiting the human verification pass** (flip `needs_review` once labels confirmed).
 
 - `[ ]` **Phase 3 — Providers & runner** *(keys needed to fire live; testable offline via a fake provider)*
   - `src/providers.py` — normalised `call(prompt, ticket) -> {raw_text, input_tokens, output_tokens}` per provider.
@@ -103,3 +104,6 @@ Legend: `[ ]` not started · `[~]` in progress · `[x]` done
   `models.yaml`, rubric, `pyproject.toml`/`uv.lock`/`Makefile`. Committed `c649129`.
 - **2026-06-16** — Added the `docs/` lab-notebook system (per-phase docs, decision log D1–D9,
   report-assembly map). Phase 2 (synthetic golden set) is next.
+- **2026-06-16** — **Phase 2 drafted:** 72-ticket synthetic golden set + `scripts/check_golden_set.py`
+  (validator passes: 72 valid, 12 hard, all `needs_review`). Decision D10 recorded. **Now awaiting the
+  human verification pass** before Phase 3.

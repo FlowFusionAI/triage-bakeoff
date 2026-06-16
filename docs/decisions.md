@@ -92,3 +92,16 @@ bottom. This is the "why" bank for the final writeup's methodology section.
 - **Why / alternatives:** Baking in stale numbers now would mislead; the brief explicitly wants a
   recorded snapshot date.
 - **Consequences:** Phase 5 includes a live verification step before any cost figures are trusted.
+
+## D10 — Golden set: scenario-based draft, truthful labels (not balanced by force)
+- **Date:** 2026-06-16 · **Status:** accepted (labels awaiting human verification)
+- **Context:** Need ~70 stratified tickets with ~15% hard cases, but labels must be defensible.
+- **Decision:** Author 72 realistic, varied tickets covering all six categories and all four urgency
+  levels, with 12 (17%) boundary-stressing hard cases. Label each by the rubric's true reading —
+  **do not relabel rows to hit a target distribution.** A reusable validator
+  (`scripts/check_golden_set.py`) checks structure and prints the coverage matrix.
+- **Why / alternatives:** Forcing a uniform urgency histogram would corrupt ground truth (a receipts
+  request is genuinely `low`). A benchmark's answer key must mirror the rubric, not a quota.
+- **Consequences:** Distribution is low-heavy and `feature_request`/`complaint` carry no high/critical
+  rows (realistic). Every label is `needs_review: true` until a human verifies it against the rubric —
+  a required gate before the Phase 5 run.
