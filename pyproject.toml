@@ -1,0 +1,31 @@
+[project]
+name = "triage-bakeoff"
+version = "0.1.0"
+description = "Reproducible benchmark comparing cheap LLMs on support-ticket triage (accuracy x cost x latency)."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "openai>=1.30",        # OpenAI; also used for DeepSeek/Groq via base_url override
+    "anthropic>=0.40",     # Claude
+    "google-genai>=0.3",   # Gemini
+    "pydantic>=2.6",       # output schema + validation
+    "tenacity>=8.2",       # retry/backoff on rate limits
+    "pandas>=2.1",         # aggregation
+    "matplotlib>=3.8",     # Pareto chart
+    "python-dotenv>=1.0",  # load API keys from .env
+    "pyyaml>=6.0",         # read config/models.yaml
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
+
+# This is an application, not an installable library: skip the build step so
+# `uv sync` just creates the environment and installs dependencies.
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+pythonpath = ["."]     # let tests import `src.*` from the repo root
+testpaths = ["tests"]

@@ -1,0 +1,53 @@
+# Models under test. Adding a model is a one-line block here -- the runner is
+# provider-agnostic (see src/providers.py, built in Phase 3).
+#
+# price_in / price_out are USD per 1,000,000 tokens.
+#
+# !! EVERY model_id and price below is an UNVERIFIED PLACEHOLDER (marked VERIFY).
+#    Confirm each against the provider's live docs on the run day, then set
+#    price_snapshot_date and mirror it in the README. Prices move monthly.
+
+price_snapshot_date: TBD          # e.g. 2026-06-20 -- set on the run day
+
+defaults:
+  temperature: 0                  # deterministic classification
+  repeats: 3                      # N=3 per ticket, to measure consistency
+  max_output_tokens: 200          # the answer is a tiny JSON object
+
+models:
+  - name: gpt-5-mini
+    provider: openai
+    model_id: gpt-5-mini          # VERIFY exact id
+    api_key_env: OPENAI_API_KEY
+    price_in: 0.25                # VERIFY
+    price_out: 2.00               # VERIFY
+
+  - name: claude-haiku-4.5
+    provider: anthropic
+    model_id: claude-haiku-4-5-20251001   # VERIFY exact id
+    api_key_env: ANTHROPIC_API_KEY
+    price_in: 1.00                # VERIFY
+    price_out: 5.00               # VERIFY
+
+  - name: gemini-flash
+    provider: google
+    model_id: gemini-flash        # VERIFY exact id (e.g. gemini-2.5-flash / -flash-lite)
+    api_key_env: GOOGLE_API_KEY
+    price_in: 0.10                # VERIFY
+    price_out: 0.40               # VERIFY
+
+  - name: deepseek-v3
+    provider: openai_compatible   # called through the openai SDK + base_url
+    model_id: deepseek-chat       # DeepSeek V3 chat endpoint; VERIFY
+    base_url: https://api.deepseek.com
+    api_key_env: DEEPSEEK_API_KEY
+    price_in: 0.27                # VERIFY
+    price_out: 1.10               # VERIFY
+
+  - name: groq-llama4
+    provider: openai_compatible   # called through the openai SDK + base_url
+    model_id: meta-llama/llama-4-scout-17b-16e-instruct   # VERIFY exact Groq id
+    base_url: https://api.groq.com/openai/v1
+    api_key_env: GROQ_API_KEY
+    price_in: 0.11                # VERIFY
+    price_out: 0.34               # VERIFY
