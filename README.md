@@ -36,10 +36,10 @@ Five-model cheap-tier spread. **Pricing and exact model IDs are verified live on
 | OpenAI | GPT-5 mini | Recognisable budget tier |
 | Anthropic | Claude Haiku 4.5 | Strong instruction-following budget |
 | Google | Gemini Flash | Cheapest proprietary tier, free tier |
-| DeepSeek | DeepSeek V3 | Price-leader outlier — accessed via OpenRouter |
-| OpenRouter | Llama 4 / Qwen (open-weight) | Open-weight representative — accessed via OpenRouter |
+| DeepSeek | DeepSeek V3 | Price-leader outlier (OpenAI-compatible endpoint) |
+| Groq | Llama 4 / Qwen | Open-weight, fast (OpenAI-compatible endpoint) |
 
-> **Access note:** DeepSeek and the open-weight model are reached through [OpenRouter](https://openrouter.ai) (OpenAI-compatible). Their **cost is computed at each model's public list price**, not OpenRouter's free-tier $0, so the cost axis reflects real production spend; their **latency includes the OpenRouter proxy hop** and is flagged as such in the findings.
+> **Access note:** every model is called **directly** on its own provider API (DeepSeek and Groq via the `openai` SDK with a `base_url` override). No third-party relay sits in the path, so **latency is directly comparable across all five models**.
 >
 > **Price snapshot date:** _TBD — recorded here when the benchmark is run._
 
@@ -91,6 +91,10 @@ triage-bakeoff/
 - [ ] Scorer + aggregation + tests
 - [ ] Live benchmark run + Pareto chart
 - [ ] Findings writeup
+
+## Development & attribution
+
+Built with AI-assisted development (Claude Code). The **methodology is mine** — the task design, the labelling rubric, the human verification of every golden-set label, the choice of metrics, and the analysis and production recommendation in the writeup. The assistant accelerated implementation; the judgement calls that a benchmark lives or dies on are my own. Being explicit about tooling is intentional: it's the same standard of honesty this project applies to its results.
 
 ## License
 

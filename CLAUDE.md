@@ -25,21 +25,22 @@ methodology matter as much as the result.
   https://github.com/FlowFusionAI/triage-bakeoff
 - **2026-06-16** — Golden set is **synthetic-scaffolded, human-verified**: Claude drafts
   ~70 tickets marked `NEEDS REVIEW`; no result is treated as real until the user verifies labels.
-- **2026-06-16** — **Provider access:** OpenAI, Anthropic, Google/Gemini called **directly**;
-  **DeepSeek V3** and an **open-weight model (Llama 4 / Qwen)** reached via **OpenRouter**
-  (OpenAI-compatible, free tier). Caveats, deliberately documented:
-  - Cost is computed at each model's **real public list price**, NOT OpenRouter's free-tier $0.
-  - Latency for OpenRouter-routed models **includes a proxy hop** and is flagged in findings.
-  - Reversible: a direct Groq/DeepSeek key is a one-line swap in `config/models.yaml`.
+- **2026-06-16** — **Provider access (all DIRECT):** OpenAI, Anthropic, Google/Gemini, plus
+  **DeepSeek** and **Groq** (the latter two via the `openai` SDK with a `base_url` override —
+  both OpenAI-compatible). User obtained direct Groq + DeepSeek keys, so there is **no relay**
+  in the path and latency is directly comparable across all five. OpenRouter was considered as
+  an unblock-now option and dropped; it remains only an optional fallback.
+- **2026-06-16** — **Transparency:** README discloses AI-assisted development (Claude Code);
+  the methodology, golden-set verification, metric choices, and analysis are the user's own.
 - **2026-06-16** — Fixed harness rules: **temperature 0**, **N=3 repeats**, **one shared prompt**
   for all models (any per-model deviation must be documented).
 - **2026-06-16** — Stack: Python 3.13, `uv`, `pydantic`, `tenacity`, `pandas`, `matplotlib`, `pytest`.
 
 ## Open items
 
-- OpenRouter **free-tier rate/daily limits** vs ~420 routed calls (2 models × 70 × 3) — verify
-  before the Phase 5 run; mitigate by spacing the run or a small credit top-up if capped.
-- Live **model IDs + pricing** for all five — web-verify on run day, record snapshot date.
+- Live **model IDs + pricing** for all five — web-verify on run day, record snapshot date
+  (placeholders in `config/models.yaml` are marked `VERIFY`).
+- Provider **rate limits** on the ~1,050-call run — handled by the concurrency cap + backoff (Phase 3).
 
 ---
 
@@ -91,5 +92,7 @@ Legend: `[ ]` not started · `[~]` in progress · `[x]` done
 ## Progress log
 
 - **2026-06-16** — Phase 0 done: public repo scaffolded (README, LICENSE, `.gitignore`,
-  `.env.example`). Added CLAUDE.md phase tracker + `.gitattributes`. Confirmed provider
-  access (OpenAI/Anthropic/Gemini direct; DeepSeek + open-weight via OpenRouter). Phase 1 next.
+  `.env.example`). Added CLAUDE.md phase tracker + `.gitattributes`.
+- **2026-06-16** — Provider access finalised to **all-direct** (user obtained Groq + DeepSeek
+  keys); dropped OpenRouter to optional fallback, removed the proxy-latency caveat. Added
+  AI-assistance disclosure to README. Cleared for Phase 1.
