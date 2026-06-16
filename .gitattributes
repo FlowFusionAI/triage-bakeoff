@@ -1,0 +1,6 @@
+# Normalise line endings to LF in the repo (silences Windows CRLF warnings,
+# keeps diffs clean across machines).
+* text=auto eol=lf
+
+# Treat images as binary (never line-ending-normalised).
+*.png binary

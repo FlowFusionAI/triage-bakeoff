@@ -36,9 +36,11 @@ Five-model cheap-tier spread. **Pricing and exact model IDs are verified live on
 | OpenAI | GPT-5 mini | Recognisable budget tier |
 | Anthropic | Claude Haiku 4.5 | Strong instruction-following budget |
 | Google | Gemini Flash | Cheapest proprietary tier, free tier |
-| DeepSeek | DeepSeek V3 | Price-leader outlier (OpenAI-compatible endpoint) |
-| Groq | Llama 4 / Qwen | Open-weight, fast (OpenAI-compatible endpoint) |
+| DeepSeek | DeepSeek V3 | Price-leader outlier — accessed via OpenRouter |
+| OpenRouter | Llama 4 / Qwen (open-weight) | Open-weight representative — accessed via OpenRouter |
 
+> **Access note:** DeepSeek and the open-weight model are reached through [OpenRouter](https://openrouter.ai) (OpenAI-compatible). Their **cost is computed at each model's public list price**, not OpenRouter's free-tier $0, so the cost axis reflects real production spend; their **latency includes the OpenRouter proxy hop** and is flagged as such in the findings.
+>
 > **Price snapshot date:** _TBD — recorded here when the benchmark is run._
 
 ## Metrics
