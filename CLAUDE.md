@@ -5,9 +5,12 @@
 > [README.md](README.md); this file tracks **phase status, decisions, and gotchas**.
 >
 > 🔁 **Maintenance rule (the user explicitly asked for this):** whenever you complete
-> or change work in a phase, update (a) that phase's checkbox/status below and (b) the
-> **Progress Log** at the bottom with a dated one-line entry. Keep this file truthful —
-> it is how the next instance knows what is already done.
+> or change work in a phase:
+> 1. update that phase's checkbox/status below + add a dated line to the **Progress Log**;
+> 2. update/create the phase's doc in [`docs/phases/`](docs/phases/) and append any new
+>    decision to [`docs/decisions.md`](docs/decisions.md) (see [`docs/README.md`](docs/README.md)).
+>
+> CLAUDE.md is the quick tracker; `docs/` is the richer report-source lab notebook. Keep both truthful.
 
 ---
 
@@ -51,12 +54,12 @@ Legend: `[ ]` not started · `[~]` in progress · `[x]` done
 - `[x]` **Phase 0 — Repo & scaffold.** Public repo created; README (methodology, WIP),
   LICENSE (MIT), `.gitignore` (blocks `.env`), `.env.example`, this file, `.gitattributes`.
 
-- `[ ]` **Phase 1 — Contracts & config** *(offline, no keys)*
-  - `src/schema.py` — pydantic models + enums; rejects/flags malformed model output.
-  - `prompts/classify.txt` — the single shared prompt **(user sign-off required before use)**.
-  - `config/models.yaml` — model list + per-model `price_in`/`price_out` + optional `base_url`.
+- `[x]` **Phase 1 — Contracts & config** *(offline, no keys)* — doc: [phase-1](docs/phases/phase-1-contracts-and-config.md)
+  - `src/schema.py` — pydantic models + enums; `parse_classification()` rejects malformed output (smoke-tested).
+  - `prompts/classify.txt` — the single shared prompt **(user-approved 2026-06-16)**.
+  - `config/models.yaml` — model list + per-model `price_in`/`price_out` + optional `base_url` (`VERIFY` placeholders).
   - `data/rubric.md` — labelling rules, one paragraph per field.
-  - `pyproject.toml` (uv) + `Makefile` (`run`/`score`/`chart`/`test`).
+  - `pyproject.toml` (uv) + `uv.lock` + `Makefile` (`run`/`score`/`chart`/`test`).
 
 - `[ ]` **Phase 2 — Synthetic golden set** *(offline)*
   - `data/golden_set.jsonl` — ~70 tickets, stratified across all categories/urgencies,
@@ -96,3 +99,7 @@ Legend: `[ ]` not started · `[~]` in progress · `[x]` done
 - **2026-06-16** — Provider access finalised to **all-direct** (user obtained Groq + DeepSeek
   keys); dropped OpenRouter to optional fallback, removed the proxy-latency caveat. Added
   AI-assistance disclosure to README. Cleared for Phase 1.
+- **2026-06-16** — **Phase 1 done:** schema + parser (smoke-tested), user-approved shared prompt,
+  `models.yaml`, rubric, `pyproject.toml`/`uv.lock`/`Makefile`. Committed `c649129`.
+- **2026-06-16** — Added the `docs/` lab-notebook system (per-phase docs, decision log D1–D9,
+  report-assembly map). Phase 2 (synthetic golden set) is next.

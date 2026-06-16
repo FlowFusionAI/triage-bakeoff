@@ -85,12 +85,15 @@ triage-bakeoff/
 ## Roadmap
 
 - [x] Repo + methodology scaffold
-- [ ] Schema, prompt, rubric, config
+- [x] Schema, prompt, rubric, config
 - [ ] Synthetic golden set (human verification pending)
 - [ ] Provider adapters + runner with rate-limit handling
 - [ ] Scorer + aggregation + tests
 - [ ] Live benchmark run + Pareto chart
 - [ ] Findings writeup
+
+> **Build journal:** the per-phase decisions, diagrams, and metrics live in [`docs/`](docs/) —
+> the source material for the final writeup.
 
 ## Development & attribution
 
